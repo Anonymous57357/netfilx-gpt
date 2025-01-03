@@ -1,0 +1,2 @@
+export const USER_AVATAR = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM1YBK-_mAR7T0GUP7rXRS4zGEQ5qHBq5ilQ&s"
+export const APP_LOGO = "https://assets.nflxext.com/ffe/siteui/vlv3/2f5a878d-bbce-451b-836a-398227a34fbf/web/IN-en-20241230-TRIFECTA-perspective_5ab944a5-1a71-4f6d-b341-8699d0491edd_large.jpg"

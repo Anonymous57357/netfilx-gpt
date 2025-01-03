@@ -16,7 +16,13 @@
 13. implement the sign out
 14. update profile
 15. fetch from TMDB MOVIES
+-  BUG FIXES: 
+    1. signup user username and profile picture update
+    2. if the user is not login redirect /browse to / login
+    3. if the logged in user try to login again redirect / to /browse
+    4. ## EFFECIENCY => UNSUBSCRIBE TO THE onAuthStateChanged callback()
 
+16. Add constants file for all hardcoded strings
 
 
 ## Features
