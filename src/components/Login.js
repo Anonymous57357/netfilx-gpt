@@ -1,61 +1,168 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { validateData } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
+
+  const name = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+
+  // using or selecting or subscribing
+  // const user = useSelector((store) => store.user.value);
+  // console.log(user);
+
+  const handleButtonClick = (e) => {
+    e.preventDefault();
+
+    const message = validateData(email.current.value, password.current.value);
+
+    setErrorMessage(message);
+
+    if (message) return;
+
+    // Sign up user then login
+
+    if (!isSignInForm) {
+      // sign up logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          // console.log(user);
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL:
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM1YBK-_mAR7T0GUP7rXRS4zGEQ5qHBq5ilQ&s",
+          })
+            .then(() => {
+              // Profile updated!
+              // ...
+              const { photoURL } = auth.currentUser;
+              dispatch(addUser({ photoURL }));
+
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+              const errorCode = error.code;
+              const errorMessage = error.message;
+
+              console.log(errorCode + "-" + errorMessage);
+              setErrorMessage(errorCode + "-" + errorMessage);
+            });
+          // redirect to browser
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          console.log(errorCode + "-" + errorMessage);
+          setErrorMessage(errorCode + "-" + errorMessage);
+
+          // ..
+        });
+    } else {
+      // sign in login
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+
+          console.log(user);
+          navigate("/browse");
+
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          console.log(errorCode + "-" + errorMessage);
+        });
+    }
+  };
+
   return (
     <div>
       <Header />
       <div className="absolute">
-        {/* login form */}
+        {/* Background image */}
         <img
           src="https://assets.nflxext.com/ffe/siteui/vlv3/2f5a878d-bbce-451b-836a-398227a34fbf/web/IN-en-20241230-TRIFECTA-perspective_5ab944a5-1a71-4f6d-b341-8699d0491edd_large.jpg"
-          alt="netfilx_bg_img"
-        ></img>
+          alt="netflix_bg_img"
+        />
       </div>
-      <form className="w-3/12 absolute bg-black p-12 py-20 my-36 mx-auto right-0 left-0 text-white rounded-md bg-opacity-80">
+      <form
+        className="w-3/12 absolute bg-black p-12 py-20 my-36 mx-auto right-0 left-0 text-white rounded-md bg-opacity-80"
+        onSubmit={handleButtonClick} // Use onSubmit for form submission
+      >
         <h1 className="font-bold text-3xl py-4 my-2 font-sans">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
 
         {!isSignInForm && (
           <input
-            type="name"
+            ref={name}
+            type="text"
             placeholder="Full Name"
             className="m-2 p-4 w-full rounded-lg bg-gray-700"
-            style={{ backgroundColor: "#374151" }} // Fallback for bg-gray-700
           />
         )}
         <input
-          type="text"
+          ref={email}
+          type="email"
           placeholder="Email"
           className="m-2 p-4 w-full rounded-lg bg-gray-700"
-          style={{ backgroundColor: "#374151" }} // Fallback for bg-gray-700
         />
-
         <input
+          ref={password}
           type="password"
           placeholder="Password"
           className="m-2 p-4 w-full rounded-lg bg-gray-700"
-          style={{ backgroundColor: "#374151" }} // Fallback for bg-gray-700
         />
-
+        <p className="mx-2 font-bold font-sans text-red-600 text-lg">
+          {errorMessage}
+        </p>
         <button
-          onClick={toggleSignInForm}
-          type="button"
+          onClick={handleButtonClick}
+          type="submit"
           className="m-2 p-2 bg-red-700 w-full rounded-lg"
         >
-          {isSignInForm ? "SignIn" : "SignUp"}
+          {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
-
         <p onClick={toggleSignInForm} className="my-4 mx-2 cursor-pointer">
           {isSignInForm
             ? "New to Netflix? Sign up now."
-            : "Aready registered? Sign In now."}
+            : "Already registered? Sign In now."}
         </p>
       </form>
     </div>

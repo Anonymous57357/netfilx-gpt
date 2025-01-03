@@ -3,7 +3,20 @@
 1. create-react-app
 2. configured tailwindcss
 3. header
-4. login form
+4. routing
+5. login form
+6. signup form 
+6. form validatation
+7. useRef Hook
+8. firebase setup
+9. Deploy our app to production
+10. Create sigup user account
+11. implement singin user api
+12. created redux store with userslice
+13. implement the sign out
+14. update profile
+15. fetch from TMDB MOVIES
+
 
 
 ## Features
