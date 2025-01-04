@@ -12,13 +12,11 @@ const Header = () => {
 
   // susubscribe the user
   const user = useSelector((store) => store.user);
-  console.log(user);
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { email, displayName, uid, photoURL } = user;
-        console.log(user);
         dispatch(addUser({ email, displayName, uid, photoURL }));
         navigate("/browse");
       } else {

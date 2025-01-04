@@ -23,6 +23,16 @@
     4. ## EFFECIENCY => UNSUBSCRIBE TO THE onAuthStateChanged callback()
 
 16. Add constants file for all hardcoded strings
+17. Register TMDB API & Create an app & get access token
+18. Get Data from TMDB now playing movies list API
+19. Custom Hook for Now playing MOVIES
+20. Create movieSlice
+21. Update store with Movie data
+22. Plannng for MainContainer & secondaryContainer
+23. Fetch video from the trailer data
+24. update store with Trailer video data
+25. Embeded the youtube video and make it auto play and mute
+26. tailwind classes to make Main controller look awesome
 
 
 ## Features
