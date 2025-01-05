@@ -37,9 +37,9 @@
 27. Build secondary container
 28. Build Movie list
 29. Build Mobie Card
-30. TMDB image CDB URL
+30. TMDB image CDN URL
 31. made our browser page amazing using tailwind css
-32. 
+32. custom hooks: usePopularMovies, useTopRatedMovies, useUpComingMovies
 
 ## Features
 
