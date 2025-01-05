@@ -14,7 +14,6 @@ const useTopRatedMovies = () => {
 
       const json = await data.json();
 
-      // console.log(json);
 
       dispatch(addTopRatedMoves(json.results));
     } catch (error) {

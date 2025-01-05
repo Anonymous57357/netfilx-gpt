@@ -10,7 +10,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { APP_LOGO, USER_AVATAR } from "../utils/constants";
+import { APP_BANNER, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -26,10 +26,6 @@ const Login = () => {
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
-
-  // using or selecting or subscribing
-  // const user = useSelector((store) => store.user.value);
-  // console.log(user);
 
   const handleButtonClick = (e) => {
     e.preventDefault();
@@ -52,7 +48,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          // console.log(user);
           updateProfile(user, {
             displayName: name.current.value,
             photoURL: USER_AVATAR,
@@ -113,7 +108,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         {/* Background image */}
-        <img src={APP_LOGO} alt="netflix_bg_img" />
+        <img src={APP_BANNER} alt="netflix_bg_img" />
       </div>
       <form
         className="w-3/12 absolute bg-black p-12 py-20 my-36 mx-auto right-0 left-0 text-white rounded-md bg-opacity-80"

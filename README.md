@@ -40,6 +40,9 @@
 30. TMDB image CDN URL
 31. made our browser page amazing using tailwind css
 32. custom hooks: usePopularMovies, useTopRatedMovies, useUpComingMovies
+33. GPT Search Page
+34. GPT Seach Bar
+35. (BONUS) Multi-language-feature in our app
 
 ## Features
 
