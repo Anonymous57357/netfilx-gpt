@@ -5,22 +5,23 @@
 3. header
 4. routing
 5. login form
-6. signup form 
-6. form validatation
-7. useRef Hook
-8. firebase setup
-9. Deploy our app to production
-10. Create sigup user account
-11. implement singin user api
-12. created redux store with userslice
-13. implement the sign out
-14. update profile
-15. fetch from TMDB MOVIES
--  BUG FIXES: 
-    1. signup user username and profile picture update
-    2. if the user is not login redirect /browse to / login
-    3. if the logged in user try to login again redirect / to /browse
-    4. ## EFFECIENCY => UNSUBSCRIBE TO THE onAuthStateChanged callback()
+6. signup form
+7. form validatation
+8. useRef Hook
+9. firebase setup
+10. Deploy our app to production
+11. Create sigup user account
+12. implement singin user api
+13. created redux store with userslice
+14. implement the sign out
+15. update profile
+16. fetch from TMDB MOVIES
+
+- BUG FIXES:
+  1. signup user username and profile picture update
+  2. if the user is not login redirect /browse to / login
+  3. if the logged in user try to login again redirect / to /browse
+  4. ## EFFECIENCY => UNSUBSCRIBE TO THE onAuthStateChanged callback()
 
 16. Add constants file for all hardcoded strings
 17. Register TMDB API & Create an app & get access token
@@ -33,20 +34,21 @@
 24. update store with Trailer video data
 25. Embeded the youtube video and make it auto play and mute
 26. tailwind classes to make Main controller look awesome
-
+27. Build secondary container
+28. Build Movie list
+29. Build Mobie Card
+30. TMDB image CDB URL
+31. made our browser page amazing using tailwind css
+32. 
 
 ## Features
+
 - login/signup (before authentiation)
-    - signIn / SignUp Form
-    - redirect to browser page
+  - signIn / SignUp Form
+  - redirect to browser page
 - Browse (after authentication)
-  - Header 
-  - Main movie (or) movie container
-        - trailer in background
-        - title & description
-        - Movie Suggesstions (many suggesstion)
-                - MovieList (list of movie)
-                       - movie (cards)
+  - Header
+  - Main movie (or) movie container - trailer in background - title & description - Movie Suggesstions (many suggesstion) - MovieList (list of movie) - movie (cards)
 - NetflixGPT
-    - SearchBar
-    - Movie Suggesstions
+  - SearchBar
+  - Movie Suggesstions
